@@ -1,0 +1,2 @@
+# odin-typescript
+Typescript practice
