@@ -1,3 +1,18 @@
+// unknown versus any - ANy means typescript doesnt care - unknown means it will ask for clarification before letting you assign it
+
+let userInput: unknown;
+let userName: string;
+
+userInput = 5;
+userInput = "Max";
+
+userName = userInput; // typescript fails this because userName must be a string and userInput is unkown  -  If userInput was any it would pass
+
+if (typeof userInput === "string") {
+  userName = userInput;
+}
+// this works because typescript knows that userInput must be a string before line 12
+
 function add(n1: number, n2: number) {
   return n1 + n2;
 }
