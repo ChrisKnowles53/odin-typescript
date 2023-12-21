@@ -19,6 +19,6 @@ class Department {
   }
 }
 
-const accoutning = new Department("Accounting");
+const accouting = new Department("Accounting");
 
-console.log(accoutning);
+console.log(accouting);
