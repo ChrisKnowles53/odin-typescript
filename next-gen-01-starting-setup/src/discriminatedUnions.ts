@@ -1,5 +1,3 @@
-//💥💥 to avoid typescript seeing issues across mutliple files this code is commented out.  Uncomment the whole sheet to see the code and value explanation comments.
-
 // type Admin = {
 //   name: string;
 //   privileges: string[];
@@ -31,7 +29,6 @@
 //   }
 //   return a + b;
 // }
-// // the If statement is the type guard - it use typescript to enfore types and then uses the if to check type before enforcing what to do with each type
 
 // type UnknownEmployee = Employee | Admin;
 
@@ -46,8 +43,6 @@
 // }
 
 // printEmployeeInformation({ name: "Manu", startDate: new Date() });
-
-// //becasue we cannot access emp.privileges in the boolean if check due to not knowing if the user is employee | admin we have to use the JavaScript 'in' word to check if ("privileges" in emp) - if it is it logs the privileges
 
 // class Car {
 //   drive() {
@@ -76,7 +71,34 @@
 //     vehicle.loadCargo(1000);
 //   }
 // }
-// // instanceof is JS and is a way to check if vehicle was created using class Truck
 
 // useVehicle(v1);
 // useVehicle(v2);
+
+// 💥💥 discriminated union - we have one common property in every object (type: "") that makes up our unnion we can then switch though that property to get access to the specific property(s) that the individual object contains - this also allows typescript to spot spelling errors and suggest autofill options.
+
+interface Bird {
+  type: "bird";
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: "horse";
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+function moveAnimal(animal: Animal) {
+  let speed;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+  }
+  console.log("Moving at speed: " + speed);
+}
+
+moveAnimal({ type: "bird", flyingSpeed: 10 });
