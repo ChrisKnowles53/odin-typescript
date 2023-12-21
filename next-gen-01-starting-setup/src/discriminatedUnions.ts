@@ -87,9 +87,9 @@ interface Horse {
   runningSpeed: number;
 }
 
-type Animal = Bird | Horse;
+type Animal1 = Bird | Horse;
 
-function moveAnimal(animal: Animal) {
+function moveAnimal(animal: Animal1) {
   let speed;
   switch (animal.type) {
     case "bird":
@@ -102,3 +102,23 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({ type: "bird", flyingSpeed: 10 });
+
+// // optional chaining
+
+// const fetchedUserData = {
+//   id: "u1",
+//   name: "Max",
+//   job: { title: "CEO", description: "My own Company" },
+// };
+
+// console.log(fetchedUserData?.job?.title);
+// // imagine if fatcheUserData was a call to a backend to get some data - what if that data did not exist
+// // the ? tells typescript to check if the data is there before proceeding and will stop runtime errors and typescript will error to tell you this does not exist
+
+// // nullish coalescing
+
+// const userInput = " ";
+// const storedData = userInput ?? "DEFAULT"; // if this was userInput || "Default" then a blank input of " " would return default bacause it defaults to a falsey value
+// console.log(storedData);
+
+// //here the ?? says if userInput is null or undefined return "DEFAULT " it means that any value other than Null and undefiened will be returned even a blank space
