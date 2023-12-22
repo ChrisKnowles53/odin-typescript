@@ -41,6 +41,7 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
 
 console.log(countAndDescribe("100"));
 
+//CJK's extra practice
 function pairWithTimestamp<T>(item: T): [T, Date] {
   const timestamp = new Date();
   return [item, timestamp];
@@ -51,3 +52,7 @@ console.log(pairedString); // ["Hello World", Date]
 
 const pairedNumber = pairWithTimestamp(123);
 console.log(pairedNumber); // [123, Date]
+
+// Notes to myself
+//by using the generic type T it means the function i versatile to work with any type.  It relies on type inference based on the argument passed in my example string or number
+// by soecifying a Tuple [T, date] we are saying we want the ouput to be an arrany containing the type T and type date - This now allows Typescript to check out function and automatically checks the type inference
