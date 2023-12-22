@@ -56,3 +56,52 @@ console.log(pairedNumber); // [123, Date]
 // Notes to myself
 //by using the generic type T it means the function i versatile to work with any type.  It relies on type inference based on the argument passed in my example string or number
 // by soecifying a Tuple [T, date] we are saying we want the ouput to be an arrany containing the type T and type date - This now allows Typescript to check out function and automatically checks the type inference
+
+// keyof
+function extractAndConvert<T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) {
+  return "Value: " + obj[key];
+}
+extractAndConvert({ name: "Max" }, "name");
+
+//if you replace name with age as the second argument typescript will error becasue age does not exist as a key in the object - this is a way of having a generic and therefore dynamic typescript system.
+
+// we cannot use T extends objects with this function due to ush and splice.  So by setting this T extends primitives if we try to work with Objects Typescript will error and warn us and we should write a function for working specifically with objects
+
+class DataStorage<T extends string | number | boolean> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+
+  removeItem(item: T) {
+    if (this.data.indexOf(item) === -1) {
+      return;
+    }
+    this.data.splice(this.data.indexOf(item), 1); // -1
+  }
+
+  getItems() {
+    return [...this.data];
+  }
+}
+// by using TextStaorage = new DataStorage<string>(); we are passing string as a prop/argument so the function knows that only strings are allowed - This can be number or boolean
+
+const textStorage = new DataStorage<string>();
+textStorage.addItem("Max");
+textStorage.addItem("Manu");
+textStorage.removeItem("Max");
+console.log(textStorage.getItems());
+
+const numberStorage = new DataStorage<number>();
+
+// const objStorage = new DataStorage<object>();
+// const maxObj = {name: 'Max'};
+// objStorage.addItem(maxObj);
+// objStorage.addItem({name: 'Manu'});
+// // ...
+// objStorage.removeItem(maxObj);
+// console.log(objStorage.getItems());
